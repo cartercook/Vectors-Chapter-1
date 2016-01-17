@@ -12,12 +12,14 @@ public class GridOverlay : MonoBehaviour {
 	public int centerZ;
 	public int radius;
 	
-	private Material lineMaterial;
+	public Material lineMaterial;
 	private Color color = new Color(0.5f, 0.5f, 0.5f, 1f);
 
 	protected void beginDrawing() {
 		if( !lineMaterial ) { //create line material
-			lineMaterial = new Material(
+			Debug.Log("No material assigned to GL.drawlines");
+			/*
+				lineMaterial = new Material(
 				@"Shader ""Lines/Colored Blended"" {
 				SubShader {
 					Pass {
@@ -31,8 +33,9 @@ public class GridOverlay : MonoBehaviour {
 			}" );
 			lineMaterial.hideFlags = HideFlags.HideAndDontSave;
 			lineMaterial.shader.hideFlags = HideFlags.HideAndDontSave;
+			*/
 		}
-		lineMaterial.SetPass (0); // set the current material
+		lineMaterial.SetPass(0); // set the current material
 		GL.Begin(GL.LINES);
 		GL.Color(color);
 		GL.PushMatrix();
