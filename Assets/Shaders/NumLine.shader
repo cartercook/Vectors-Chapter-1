@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: commented out 'float4x4 _Object2World', a built-in variable
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+// Upgrade NOTE: commented out 'float4x4 _Object2World', a built-in variable
 
 //Shader "Custom/NumLine" {
 //    Properties {
@@ -80,7 +82,7 @@ Shader "Custom/NumLine" {
         v2f vert (appdata_base v)
         {
             v2f o;
-            o.pos = mul(_Object2World, v.vertex);
+            o.pos = mul(unity_ObjectToWorld, v.vertex);
             
             float3 planeNormal = float3(1,0,0);
 			float3 viewDir = _WorldSpaceCameraPos - o.pos.xyz; //vector pointing from camera to vertex

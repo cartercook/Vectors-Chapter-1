@@ -1,4 +1,7 @@
-﻿Shader "Custom/GlowShader" {
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader "Custom/GlowShader" {
     Properties {
         _Color ("Object's Color", Color)   = (0, 1, 0, 1)
         _GlowColor ("Glow's Color", Color) = (1, 0, 0, 0)
@@ -58,8 +61,8 @@
             v2f vert(vInput i) {
                 v2f o;
 
-                float4x4 modelMatrix        = _Object2World;
-                float4x4 modelMatrixInverse = _World2Object;
+                float4x4 modelMatrix        = unity_ObjectToWorld;
+                float4x4 modelMatrixInverse = unity_WorldToObject;
 
                 float3 normalDirection = normalize(mul(i.normal, modelMatrixInverse)).xyz;
                 float3 viewDirection   = normalize(_WorldSpaceCameraPos - mul(modelMatrix, i.vertex).xyz);
